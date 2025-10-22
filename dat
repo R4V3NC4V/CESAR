@@ -1,0 +1,14 @@
+# Recolección de datos
+whois dominio.com
+nslookup dominio.com
+dig dominio.com
+theHarvester -d dominio.com -b all
+sublist3r -d dominio.com
+
+# Infraestructura
+nmap -sV -Pn dominio.com
+curl -I https://dominio.com
+wget --mirror --convert-links https://dominio.com
+
+# Google Dorks
+echo 'site:dominio.com filetype:pdf' > dorks.txt
