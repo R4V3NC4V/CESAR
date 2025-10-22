@@ -1,0 +1,7 @@
+OSINT-Toolkit/
+├── osint_gui.py              # Código principal con interfaz Tkinter
+├── README.md                 # Documentación del proyecto
+├── requirements.txt          # Lista de dependencias
+├── icon.ico                  # Ícono personalizado para el ejecutable
+├── dist/                     # Carpeta donde se genera el .exe
+└── assets/                   # Carpeta opcional para imágenes, logs, etc.
