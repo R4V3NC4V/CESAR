@@ -1,0 +1,8 @@
+# Geolocalización
+geoiplookup IP
+
+# Ruta de red
+traceroute dominio.com
+
+# Escaneo de puertos
+nmap -Pn -sV IP
