@@ -1,0 +1,8 @@
+# Twitter
+twint -u usuario --followers --following --tweets
+
+# Instagram
+instaloader usuario --stories --metadata-json
+
+# Metadatos de imagen
+exiftool imagen.jpg
