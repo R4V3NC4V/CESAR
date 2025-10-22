@@ -1,0 +1,59 @@
+import tkinter as tk
+from tkinter import messagebox
+import subprocess
+
+def ejecutar_comandos(tipo):
+    objetivo = entry.get()
+    if not objetivo:
+        messagebox.showwarning("Advertencia", "Ingresá un dominio, IP o usuario.")
+        return
+
+    comandos = []
+    if tipo == "empresa":
+        comandos = [
+            f"whois {objetivo}",
+            f"nslookup {objetivo}",
+            f"dig {objetivo}",
+            f"theHarvester -d {objetivo} -b all",
+            f"sublist3r -d {objetivo}",
+            f"nmap -sV -Pn {objetivo}"
+        ]
+    elif tipo == "persona":
+        comandos = [
+            f"twint -u {objetivo}",
+            f"instaloader {objetivo}"
+        ]
+    elif tipo == "red":
+        comandos = [
+            f"geoiplookup {objetivo}",
+            f"traceroute {objetivo}",
+            f"nmap -Pn -sV {objetivo}"
+        ]
+
+    resultado = ""
+    for cmd in comandos:
+        try:
+            salida = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT, text=True)
+            resultado += f"\n\n=== {cmd} ===\n{salida}"
+        except subprocess.CalledProcessError as e:
+            resultado += f"\n\n=== {cmd} ===\nError: {e.output}"
+
+    text.delete(1.0, tk.END)
+    text.insert(tk.END, resultado)
+
+# Interfaz
+root = tk.Tk()
+root.title("OSINT Toolkit")
+
+tk.Label(root, text="Dominio, IP o usuario:").pack()
+entry = tk.Entry(root, width=50)
+entry.pack()
+
+tk.Button(root, text="Empresa", command=lambda: ejecutar_comandos("empresa")).pack()
+tk.Button(root, text="Persona", command=lambda: ejecutar_comandos("persona")).pack()
+tk.Button(root, text="Red", command=lambda: ejecutar_comandos("red")).pack()
+
+text = tk.Text(root, wrap="word", height=30, width=100)
+text.pack()
+
+root.mainloop()
