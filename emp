@@ -1,0 +1,8 @@
+
+---
+
+## 🧪 Cómo empaquetarlo como `.exe`
+1. Colocá tu ícono personalizado en `icon.ico`
+2. Ejecutá:
+```bash
+pyinstaller --onefile --windowed --icon=icon.ico osint_gui.py
